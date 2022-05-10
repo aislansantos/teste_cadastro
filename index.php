@@ -17,14 +17,15 @@ $registerContacts = new RegisterContacts($pdo);
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
 
 
-    <title>Teste - Relembrando PHP</title>
+    <title>Cadastro de Contato - Consulta</title>
 </head>
 
 <body class="bg-light">
     <div class="container">
         <h1>Cadastro de Contatos</h1>
         <hr class="my-4">
-
+        <h2>Consulta de Registros</h2>
+        <br>
         <table class="table table-striped table-dark table-hover tab">
             <thead>
                 <th>Código</th>
