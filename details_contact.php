@@ -1,6 +1,34 @@
 <?php
 require("conn.php");
 require("assets/class/contacts.class.php");
+
+$registerContact = new RegisterContacts($pdo);
+
+if (!empty($_GET["id"])){
+    $id = $_GET["id"];
+    $list = $registerContact($cod);
+}else{
+    $list = null;
+}
+
+if (!empty($_POST["name"]) || !empty($_POST["secondname"]) || !empty($_POST["telefone"])){
+    $id = addslashes($_POST["id"]);
+    $name = addslashes($_POST["name"]);
+    $secondname = addslashes($_POST["secondname"]);
+    $cpf = addslashes($_POST["cpf"]);
+    $email = addslashes($_POST["email"]);
+
+    $registerContact->setId($id);
+    $registerContact->setName($name);
+    $registerContact->setSecondname($secondname);
+    $registerContact->setCpf($cpf);
+    $registerContact->setEmail($email);
+
+    $registerContact->save();
+
+    header('location: index.php');
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -27,18 +55,7 @@ require("assets/class/contacts.class.php");
         <h2>Cadastro</h2>
         <br>
 
-        <div class="mb-3">
-            <label>Código</label>
-            <input type="text" name="id" id="id">
-        </div>
-        <div class="mb-3">
-            <label for="exampleFormControlInput1" class="form-label">Email address</label>
-            <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
-        </div>
-        <div class="mb-3">
-            <label for="exampleFormControlTextarea1" class="form-label">Example textarea</label>
-            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-        </div>
+    
     </div>
 
 </body>

@@ -3,7 +3,7 @@ class RegisterContacts
 {
         private $id;
         private $name;
-        private $secondName;
+        private $secondname;
         private $cpf;
         private $email;
         private $pdo;
@@ -37,11 +37,11 @@ class RegisterContacts
         }
 
 
-        public function getSobrenome()
+        public function getSecondname()
         {
-                return $this->secondName;
+                return $this->secondname;
         }
-        public function setSobrenome($secondName)
+        public function setSecondname($secondName)
         {
                 $this->sobrenome = $secondName;
         }
@@ -95,6 +95,11 @@ class RegisterContacts
                 }else{
                         return array();
                 }
+        }
+
+        public function save()
+        {
+
         }
 
 }

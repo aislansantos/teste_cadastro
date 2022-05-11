@@ -15,3 +15,6 @@ primary key(id)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 select * from contato;
+
+INSERT INTO contato (name, secondname, cpf, email)
+VALUES ("augusto", "angelo", "06630408547", "augusto.angelo@gmail.com"); 
