@@ -29,6 +29,7 @@ $registerContacts = new RegisterContacts($pdo);
         <hr class="my-4">
         <h2>Consulta de Registros</h2>
         <br>
+        <input type="button" value="Cadastro" class="btn btn-primary" onclick="window.location='details_contact.php';">
         <table id="contato" name="contato" class="table table-hover">
             <thead>
                 <th>Código</th>

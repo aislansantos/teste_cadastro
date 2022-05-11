@@ -43,7 +43,7 @@ class RegisterContacts
         }
         public function setSecondname($secondName)
         {
-                $this->sobrenome = $secondName;
+                $this->secondname = $secondName;
         }
 
 
@@ -88,18 +88,49 @@ class RegisterContacts
         {
                 $sql = "SELECT * FROM contato WHERE id = :id_cad";
                 $stmt = $this->pdo->prepare($sql);
-                $stmt->bindParam(":id_cad",$id_cad, PDO::PARAM_INT);
+                $stmt->bindParam(":id_cad", $id_cad, PDO::PARAM_INT);
                 $stmt->execute();
-                if($stmt->rowCount() > 0){
+                if ($stmt->rowCount() > 0) {
                         return $stmt->fetch();
-                }else{
+                } else {
                         return array();
                 }
         }
 
         public function save()
         {
+                if (!empty($this->id)) {
+                        $sql = "UPDATE contato SET name = :name, secondname = :secondname , cpf = :cpf, email = :email WHERE id = :id";
+                        $stmt = $this->pdo->prepare($sql);
+                        $stmt->bindParam(":name", $this->name, PDO::PARAM_STR);
+                        $stmt->bindParam(":secondname", $this->secondname, PDO::PARAM_STR);
+                        $stmt->bindParam(":cpf", $this->cpf, PDO::PARAM_STR);
+                        $stmt->bindParam(":email", $this->email, PDO::PARAM_STR);
+                        $stmt->bindParam(":id", $this->id, PDO::PARAM_INT);
+                        $stmt->execute();
+                }
+                if ($this->checkContact() == True){
+                        $sql="INSERT INTO contato (name, secondname, cpf, email) VALUES (:name, :secondname, :cpf, :email)";
+                        $stmt = $this->pdo->prepare($sql);
+                        $stmt->bindParam(":name", $this->name, PDO::PARAM_STR);
+                        $stmt->bindParam(":secondname", $this->secondname, PDO::PARAM_STR);
+                        $stmt->bindParam(":cpf", $this->cpf, PDO::PARAM_STR);
+                        $stmt->bindParam(":email", $this->email, PDO::PARAM_STR);
+                        $stmt->execute();
+                }
 
         }
 
+        public function checkContact()
+        {
+            $sql = "SELECT * FROM contato WHERE name = :name";
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->bindParam(":name", $this->name, PDO::PARAM_STR);
+            $stmt->execute();
+            if ($stmt->rowCount() == 0) {
+                return true;
+            } else {
+                return false;
+            }
+        }
 }

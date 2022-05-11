@@ -103,7 +103,7 @@ if (!empty($_POST["name"]) || !empty($_POST["secondname"]) || !empty($_POST["tel
             </div>
             <br>
             <input type="submit" value="Salvar" class="btn btn-success">
-            <input type="button" value="Consultar" class="btn btn-primary">
+            <input type="button" value="Consultar" class="btn btn-primary" onclick="window.location='index.php';">
         </form>
 
     </div>
