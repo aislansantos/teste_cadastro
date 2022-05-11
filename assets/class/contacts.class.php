@@ -99,7 +99,7 @@ class RegisterContacts
 
         public function save()
         {
-                if ($this->validates_CPF($this->cpf) == True) {
+                if ($this->validate_CPF($this->cpf) == True) {
                         if (!empty($this->id)) {
                                 $sql = "UPDATE contato SET name = :name, secondname = :secondname , cpf = :cpf, email = :email WHERE id = :id";
                                 $stmt = $this->pdo->prepare($sql);
@@ -119,6 +119,9 @@ class RegisterContacts
                                 $stmt->bindParam(":email", $this->email, PDO::PARAM_STR);
                                 $stmt->execute();
                         }
+                        return True;
+                }else{
+                        return False;
                 }
         }
 
@@ -144,7 +147,7 @@ class RegisterContacts
                 return true;
         }
 
-        public function validates_CPF($cpf_to_be_valid = null)
+        public function validate_CPF($cpf_to_be_valid = null)
         {
                 if ($cpf_to_be_valid != null) {
                         // Extrai somente os números

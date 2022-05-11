@@ -26,7 +26,11 @@ if (!empty($_POST["name"]) || !empty($_POST["secondname"]) || !empty($_POST["tel
 
     $registerContact->save();
 
-    header('location: index.php');
+    if ($registerContact->save() == False) {
+       echo "<div class='alert alert-danger' role='alert'> CPF INVÁLIDO! </div>";
+    } else {
+        header('location: index.php');
+    }
 }
 
 ?>
@@ -103,6 +107,7 @@ if (!empty($_POST["name"]) || !empty($_POST["secondname"]) || !empty($_POST["tel
             </div>
             <br>
             <input type="submit" value="Salvar" class="btn btn-success">
+
             <input type="button" value="Consultar" class="btn btn-primary" onclick="window.location='index.php';">
         </form>
 
