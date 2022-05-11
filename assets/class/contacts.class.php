@@ -133,4 +133,13 @@ class RegisterContacts
                 return false;
             }
         }
+        
+        public function deleteContact()
+        {
+            $sql = "DELETE FROM contato WHERE id = :id";
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->bindParam(":id", $this->id, PDO::PARAM_INT);
+            $stmt->execute();
+            return true;
+        }
 }
