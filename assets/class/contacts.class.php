@@ -86,7 +86,7 @@ class RegisterContacts
 
         public function queryRecordToEdit($id_cad = null)
         {
-                $sql = "SELECT * FROM WHERE id = :id_cad";
+                $sql = "SELECT * FROM contato WHERE id = :id_cad";
                 $stmt = $this->pdo->prepare($sql);
                 $stmt->bindParam(":id_cad",$id_cad, PDO::PARAM_INT);
                 $stmt->execute();

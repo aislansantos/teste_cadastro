@@ -4,14 +4,14 @@ require("assets/class/contacts.class.php");
 
 $registerContact = new RegisterContacts($pdo);
 
-if (!empty($_GET["id"])){
+if (!empty($_GET["id"])) {
     $id = $_GET["id"];
-    $list = $registerContact($cod);
-}else{
+    $list = $registerContact->queryRecordToEdit($id);
+} else {
     $list = null;
 }
 
-if (!empty($_POST["name"]) || !empty($_POST["secondname"]) || !empty($_POST["telefone"])){
+if (!empty($_POST["name"]) || !empty($_POST["secondname"]) || !empty($_POST["telefone"])) {
     $id = addslashes($_POST["id"]);
     $name = addslashes($_POST["name"]);
     $secondname = addslashes($_POST["secondname"]);
@@ -55,7 +55,28 @@ if (!empty($_POST["name"]) || !empty($_POST["secondname"]) || !empty($_POST["tel
         <h2>Cadastro</h2>
         <br>
 
-    
+        <form action="" method="post">
+            <div class="form-group">
+                <input type="hidden" name="id" value="<?php if (!empty($list['id'])) {
+                                                            echo $list['id'];
+                                                        }
+                                                        ?>">
+                <div class="row">
+                    <label for="name">Nome:</label>
+                    <input type="text" name="name" id="name" value="<?php if (!empty($list['name'])) {
+                                                                        echo $list['name'];
+                                                                    }
+                                                                    ?>" required>
+
+                    <label for="secondname">Sobrenome</label>
+                    <input type="text" name="secondname" id="secondname" value="<?php if (!empty($list['secondname'])) {
+                                                                                    echo $list['secondname'];
+                                                                                }
+                                                                                ?>">
+                </div>
+            </div>
+        </form>
+
     </div>
 
 </body>
