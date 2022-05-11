@@ -16,6 +16,9 @@ $registerContacts = new RegisterContacts($pdo);
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
 
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.21/datatables.min.css" />
+    <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.21/datatables.min.js"></script>
 
     <title>Cadastro de Contato - Consulta</title>
 </head>
@@ -26,7 +29,7 @@ $registerContacts = new RegisterContacts($pdo);
         <hr class="my-4">
         <h2>Consulta de Registros</h2>
         <br>
-        <table class="table table-striped table-dark table-hover tab">
+        <table id="contato" name="contato" class="table table-hover">
             <thead>
                 <th>Código</th>
                 <th>Nome</th>
@@ -43,13 +46,35 @@ $registerContacts = new RegisterContacts($pdo);
                         <td><?php echo $item["name"]; ?></td>
                         <td><?php echo $item["secondname"]; ?></td>
                         <td>
-                        <a href="<?php echo 'details_contact.php?id=' . $item['id']; ?>" class="btn btn-secondary btn-sm">CONSULTAR</a>
-                        <a href="<?php echo 'fornecedor_Deletar.php?id=' . $item['id'] . '&name=' . $item['name']; ?>" class="btn btn-secondary btn-sm">EXCLUIR</a>
+                            <a href="<?php echo 'details_contact.php?id=' . $item['id']; ?>" class="btn btn-secondary btn-sm">CONSULTAR</a>
+                            <a href="<?php echo 'fornecedor_Deletar.php?id=' . $item['id'] . '&name=' . $item['name']; ?>" class="btn btn-secondary btn-sm">EXCLUIR</a>
                         </td>
                     </tr>
                 <?php endforeach; ?>
             </tbody>
         </table>
+        <script>
+            $(document).ready(function() {
+                $('#contato').DataTable({
+
+                    scrollY: '60vh',
+                    scrollCollapse: true,
+                    paging: false,
+
+
+                    "language": {
+                        "lengthMenu": "Mostrando _MENU_ registros por pagina",
+                        "zeroRecords": "Nada encontrado",
+                        "info": "",
+                        "infoEmpty": "Nenhum registro disponivel",
+                        "infoFiltered": "(Filtrado de _MAX_ total registros)",
+                        "search": "Pesquisar:",
+                    }
+
+
+                });
+            });
+        </script>
     </div>
 </body>
 

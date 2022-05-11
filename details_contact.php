@@ -47,6 +47,7 @@ if (!empty($_POST["name"]) || !empty($_POST["secondname"]) || !empty($_POST["tel
     <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
 
+
     <?php if (!empty($_GET['id'])) {
         echo "<title>Cadastro de Contatos - Editar</title>";
     } else {
@@ -56,7 +57,7 @@ if (!empty($_POST["name"]) || !empty($_POST["secondname"]) || !empty($_POST["tel
 
 </head>
 
-<body class="bg-light">
+<body class="bg-light" onload="$('#cpf').mask('000.000.000-00');">
     <div class="container">
         <h1>Cadastro de Contatos</h1>
         <hr class="my-4">
