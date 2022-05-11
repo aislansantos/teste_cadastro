@@ -44,7 +44,15 @@ if (!empty($_POST["name"]) || !empty($_POST["secondname"]) || !empty($_POST["tel
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
 
-    <title>Cadastro de Contatos - Novo</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
+
+    <?php if (!empty($_GET['id'])) {
+        echo "<title>Cadastro de Contatos - Editar</title>";
+    } else {
+        echo "<title>Cadastro de Contatos - Novo</title>";
+    }
+    ?>
 
 </head>
 
@@ -62,22 +70,43 @@ if (!empty($_POST["name"]) || !empty($_POST["secondname"]) || !empty($_POST["tel
                                                         }
                                                         ?>">
                 <div class="row">
-                    <label for="name">Nome:</label>
-                    <input type="text" name="name" id="name" value="<?php if (!empty($list['name'])) {
-                                                                        echo $list['name'];
-                                                                    }
-                                                                    ?>" required>
+                    <div class="col mb-3">
+                        <input type="text" name="name" id="name" value="<?php if (!empty($list['name'])) {
+                                                                            echo $list['name'];
+                                                                        }
+                                                                        ?>" required placeholder="Nome">
+                    </div>
+                    <div class="col mb-3">
+                        <input type="text" name="secondname" id="secondname" value="<?php if (!empty($list['secondname'])) {
+                                                                                        echo $list['secondname'];
+                                                                                    }
+                                                                                    ?>" placeholder="Sobrenome">
+                    </div>
+                    <div class="col mb-3">
+                        <input type="text" name="cpf" id="cpf" value="<?php if (!empty($list['cpf'])) {
+                                                                            echo $list['cpf'];
+                                                                        }
 
-                    <label for="secondname">Sobrenome</label>
-                    <input type="text" name="secondname" id="secondname" value="<?php if (!empty($list['secondname'])) {
-                                                                                    echo $list['secondname'];
-                                                                                }
-                                                                                ?>">
+                                                                        ?>" placeholder="CPF" onkeypress="$(this).mask('000.000.000-00');">
+                    </div>
+                    <div class="col mb-3">
+                        <input type="email" name="email" id="email" value="<?php if (!empty($list['email'])) {
+                                                                                echo $list['email'];
+                                                                            }
+                                                                            ?>" placeholder="Email">
+                    </div>
+                    <div class="col mb-3">
+                        <a href=""> <img src="assets/img/telefone.png" alt="telefones" width="30" height="30" /></a>
+                    </div>
                 </div>
             </div>
+            <br>
+            <input type="submit" value="Salvar" class="btn btn-success">
+            <input type="button" value="Consultar" class="btn btn-primary">
         </form>
 
     </div>
+
 
 </body>
 
