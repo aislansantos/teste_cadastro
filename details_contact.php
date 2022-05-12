@@ -134,8 +134,7 @@ if (!empty($_POST["name"]) || !empty($_POST["secondname"]) || !empty($_POST["tel
                     <table id="phone" name="phone" class="table table-hover">
                         <thead>
                             <th>Telefone</th>
-                            <th>Tipo</th>
-                            <th>Ação</th>
+                            <th>Excluir</th>
                         </thead>
                         <tbody>
                             <?php
@@ -145,19 +144,22 @@ if (!empty($_POST["name"]) || !empty($_POST["secondname"]) || !empty($_POST["tel
                             ?>
                                     <tr>
                                         <td><?php echo $item['number_phone']; ?></td>
-                                        <td><?php echo $item['type_phone']; ?></td>
-                                        <td>Action</td>
+                                        <td>Excluir</td>
                                     </tr>
                                 <?php endforeach;
                             } else { ?>
                                 <tr>
                                     <td></td>
                                     <td></td>
-                                    <td></td>
                                 </tr>
                             <?php } ?>
                         </tbody>
                     </table>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <input type="text" placeholder="Telefone" class="">
+                        </div>
+                    </div>
                 </div>
 
                 <!-- Modal footer -->

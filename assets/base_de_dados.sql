@@ -18,10 +18,11 @@ primary key(id)
 create table if not exists phone(
 id int(10) auto_increment not null,
 number_phone varchar(14) not null,
-type_phone tinyint(1),
 id_contact int(10) not null,
-primary key(id)
-)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+primary key(id),
+constraint fk_contact foreign key (id_contact) references contato (id)
+on delete restrict on update cascade
+)ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=UTF8;
 
 select * from contato;
 select * from phone;
