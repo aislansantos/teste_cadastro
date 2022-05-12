@@ -1,14 +1,18 @@
 <?php
 require("conn.php");
 require("assets/class/contacts.class.php");
+require("assets/class/phone.class.php");
 
 $registerContact = new RegisterContacts($pdo);
+$registerPhone = new Phone($pdo);
 
 if (!empty($_GET["id"])) {
     $id = $_GET["id"];
     $list = $registerContact->queryRecordToEdit($id);
+    $list_phone = $registerContact->readRegister($id);
 } else {
     $list = null;
+    $list_phone = null;
 }
 
 if (!empty($_POST["name"]) || !empty($_POST["secondname"]) || !empty($_POST["telefone"])) {
@@ -27,7 +31,7 @@ if (!empty($_POST["name"]) || !empty($_POST["secondname"]) || !empty($_POST["tel
     $registerContact->save();
 
     if ($registerContact->save() == False) {
-       echo "<div class='alert alert-danger' role='alert'> CPF INVÁLIDO! </div>";
+        echo "<div class='alert alert-danger' role='alert'> CPF INVÁLIDO! </div>";
     } else {
         header('location: index.php');
     }
@@ -52,6 +56,9 @@ if (!empty($_POST["name"]) || !empty($_POST["secondname"]) || !empty($_POST["tel
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
 
 
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+
     <?php if (!empty($_GET['id'])) {
         echo "<title>Cadastro de Contatos - Editar</title>";
     } else {
@@ -67,7 +74,6 @@ if (!empty($_POST["name"]) || !empty($_POST["secondname"]) || !empty($_POST["tel
         <hr class="my-4">
         <h2>Cadastro</h2>
         <br>
-
         <form action="" method="post">
             <div class="form-group">
                 <input type="hidden" name="id" value="<?php if (!empty($list['id'])) {
@@ -101,19 +107,67 @@ if (!empty($_POST["name"]) || !empty($_POST["secondname"]) || !empty($_POST["tel
                                                                             ?>" placeholder="Email">
                     </div>
                     <div class="col mb-3">
-                        <a href=""> <img src="assets/img/telefone.png" alt="telefones" width="30" height="30"  /></a>
+                        <img src="assets/img/telefone.png" alt="telefones" width="30" height="30" data-bs-toggle="modal" data-bs-target="#phone" />
+
                     </div>
                 </div>
             </div>
             <br>
             <input type="submit" value="Salvar" class="btn btn-success">
-
             <input type="button" value="Consultar" class="btn btn-primary" onclick="window.location='index.php';">
         </form>
-
     </div>
 
+    <!-- The Modal -->
+    <div class="modal" id="phone">
+        <div class="modal-dialog">
+            <div class="modal-content">
 
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Telefones: </h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <table id="phone" name="phone" class="table table-hover">
+                        <thead>
+                            <th>Telefone</th>
+                            <th>Tipo</th>
+                            <th>Ação</th>
+                        </thead>
+                        <tbody>
+                            <?php
+                            if (!empty($id)) {
+                                $list_phone = $registerPhone->readRegister($id);
+                                foreach ($list_phone as $item) :
+                            ?>
+                                    <tr>
+                                        <td><?php echo $item['number_phone']; ?></td>
+                                        <td><?php echo $item['type_phone']; ?></td>
+                                        <td>Action</td>
+                                    </tr>
+                                <?php endforeach;
+                            } else { ?>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                            <?php } ?>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>

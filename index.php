@@ -43,7 +43,7 @@ $registerContacts = new RegisterContacts($pdo);
                 foreach ($list as $item) :
                 ?>
                     <tr>
-                        <td><?php echo $item["id"] ?></td>
+                        <td><?php echo $item["id"]; ?></td>
                         <td><?php echo $item["name"]; ?></td>
                         <td><?php echo $item["secondname"]; ?></td>
                         <td>
