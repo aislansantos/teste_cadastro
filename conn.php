@@ -2,7 +2,7 @@
 
 $dsn = "mysql:dbname=contatos_teste;host=localhost";
 $dbuser = "root";
-$dbpass = "";
+$dbpass = "adm123**";
 
 try{
     $pdo = new PDO($dsn, $dbuser, $dbpass);

@@ -36,7 +36,7 @@ if (!empty($_POST["name"]) || !empty($_POST["secondname"]) || !empty($_POST["tel
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
     <meta charset="UTF-8">
@@ -101,7 +101,7 @@ if (!empty($_POST["name"]) || !empty($_POST["secondname"]) || !empty($_POST["tel
                                                                             ?>" placeholder="Email">
                     </div>
                     <div class="col mb-3">
-                        <a href=""> <img src="assets/img/telefone.png" alt="telefones" width="30" height="30" /></a>
+                        <a href=""> <img src="assets/img/telefone.png" alt="telefones" width="30" height="30"  /></a>
                     </div>
                 </div>
             </div>

@@ -1,4 +1,4 @@
-<?php
+ <?php
 class RegisterContacts
 {
         private $id;
@@ -120,7 +120,7 @@ class RegisterContacts
                                 $stmt->execute();
                         }
                         return True;
-                }else{
+                } else {
                         return False;
                 }
         }
@@ -174,7 +174,7 @@ class RegisterContacts
                                 }
                         }
                         return true;
-                }else{
+                } else {
                         return True;
                 }
         }
