@@ -47,7 +47,7 @@ $registerContacts = new RegisterContacts($pdo);
                         <td><?php echo $item["name"]; ?></td>
                         <td><?php echo $item["secondname"]; ?></td>
                         <td>
-                            <a href="<?php echo 'details_contact.php?id=' . $item['id']; ?>" class="btn btn-secondary btn-sm">CONSULTAR</a>
+                            <a href="<?php echo 'details_contact_html.php?id=' . $item['id']; ?>" class="btn btn-secondary btn-sm">CONSULTAR</a>
                             <a href="<?php echo 'delete_contact.php?id=' . $item['id']; ?>" class="btn btn-secondary btn-sm">EXCLUIR</a>
                         </td>
                     </tr>
