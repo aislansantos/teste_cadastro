@@ -1,22 +1,18 @@
 <?php
 require("conn.php");
 require("assets/class/contacts.class.php");
-require("assets/class/phone.class.php");
 
 $registerContact = new RegisterContacts($pdo);
-$registerPhone = new Phone($pdo);
 
-if (!empty($_GET["id"])) {
-    $id = $_GET["id"];
+if (!empty($_GET["id_contact"])) {
+    $id = $_GET["id_contact"];
     $list = $registerContact->queryRecordToEdit($id);
-    $list_phone = $registerContact->readRegister($id);
 } else {
     $list = null;
-    $list_phone = null;
 }
 
 if (!empty($_POST["name"]) || !empty($_POST["secondname"]) || !empty($_POST["telefone"])) {
-    $id = addslashes($_POST["id"]);
+    $id = addslashes($_POST["id_contact"]);
     $name = addslashes($_POST["name"]);
     $secondname = addslashes($_POST["secondname"]);
     $cpf = addslashes($_POST["cpf"]);
@@ -36,6 +32,3 @@ if (!empty($_POST["name"]) || !empty($_POST["secondname"]) || !empty($_POST["tel
         header('location: index.php');
     }
 }
-
-?>
-

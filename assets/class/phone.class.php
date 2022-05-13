@@ -3,7 +3,6 @@ class Phone
 {
     private $id;
     private $number_phone;
-    private $type_phone;
     private $id_contact;
     private $pdo;
 
@@ -34,20 +33,6 @@ class Phone
         $this->number_phone = $number_phone;
     }
 
-
-    public function getType_phone()
-    {
-        return $this->type_phone;
-    }
-
-
-    public function setType_phone($type_phone)
-    {
-        $this->type_phone = $type_phone;
-    }
-
-
-
     public function getId_contact()
     {
         return $this->id_contact;
@@ -67,12 +52,26 @@ class Phone
         $stmt->execute();
         if ($stmt->rowCount() > 0) {
             return $stmt->fetchAll();
-        }else{
+        } else {
             return array();
         }
     }
 
-    public function save(){
-        
+    public function save()
+    {
+        if (!empty($this->id)) {
+            $sql = "UPDATE phone SET number_phone = :number_phone, id_contact = :id_contact WHERE id = :id";
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->bindParam(":number_phone", $this->number_phone, PDO::PARAM_STR);
+            $stmt->bindParam(":id_contact", $this->id_contact, PDO::PARAM_INT);
+            $stmt->bindParam(":id", $this->id, PDO::PARAM_INT);
+            $stmt->execute();
+        } else {
+            $sql = "INSERT INTO contato (number_phone, id_contact) VALUES (:number_phone, :id_contact)";
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->bindParam(":number_phone", $this->number_phone, PDO::PARAM_STR);
+            $stmt->bindParam(":id_contact", $this->id_contact, PDO::PARAM_INT);
+            $stmt->execute();
+        }
     }
 }

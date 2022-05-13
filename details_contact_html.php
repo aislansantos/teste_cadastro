@@ -1,4 +1,5 @@
 <?php require("details_contact.php"); ?>
+<?php require("details_contact_phone.php") ?>
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -37,7 +38,7 @@
         <hr class="my-4">
         <h2>Cadastro</h2>
         <br>
-        <form action="" method="post">
+        <form action="" method="post" id="cadastro_contato">
             <div class="form-group">
                 <input type="hidden" name="id" value="<?php if (!empty($list['id'])) {
                                                             echo $list['id'];
@@ -77,7 +78,7 @@
             </div>
             <br>
             <input type="submit" value="Salvar" class="btn btn-success">
-            <input type="button" value="Consultar" class="btn btn-primary" onclick="window.location='index.php';">
+            <input type="button" value="Voltar" class="btn btn-primary" onclick="window.location='index.php';">
         </form>
     </div>
 
@@ -97,7 +98,7 @@
                     <table id="phone" name="phone" class="table table-hover">
                         <thead>
                             <th>Telefone</th>
-                            <th>Excluir</th>
+                            <th></th>
                         </thead>
                         <tbody>
                             <?php
@@ -122,7 +123,7 @@
             </div>
         </div>
     </div>
-    
+
     <!-- The Modal add phones -->
     <div class="modal" id="add_phone">
         <div class="modal-dialog">
@@ -137,13 +138,13 @@
                 <!-- Modal body -->
                 <div class="modal-body">
                     <div>
-                        <form class="row g-3">
+                        <form action="details_contact_phone.php" method="post"  class="row g-3">
                             <div class="col-auto">
                                 <label for="add_phone" class="visually-hidden">Telefone</label>
                                 <input type="text" class="form-control" id="add_phone" placeholder="Telefone">
                             </div>
                             <div class="col-auto">
-                                <button type="submit" class="btn btn-primary mb-3">Salvar</button>
+                                <input type="submit" value="Salvar" class="btn btn-success">
                             </div>
                         </form>
                     </div>

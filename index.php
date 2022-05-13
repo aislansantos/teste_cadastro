@@ -29,7 +29,7 @@ $registerContacts = new RegisterContacts($pdo);
         <hr class="my-4">
         <h2>Consulta de Registros</h2>
         <br>
-        <input type="button" value="Cadastro" class="btn btn-primary" onclick="window.location='details_contact.php';">
+        <input type="button" value="Cadastro" class="btn btn-primary" onclick="window.location='details_contact_html.php';">
         <table id="contato" name="contato" class="table table-hover">
             <thead>
                 <th>Código</th>
@@ -47,8 +47,8 @@ $registerContacts = new RegisterContacts($pdo);
                         <td><?php echo $item["name"]; ?></td>
                         <td><?php echo $item["secondname"]; ?></td>
                         <td>
-                            <a href="<?php echo 'details_contact_html.php?id=' . $item['id']; ?>" class="btn btn-secondary btn-sm">CONSULTAR</a>
-                            <a href="<?php echo 'delete_contact.php?id=' . $item['id']; ?>" class="btn btn-secondary btn-sm">EXCLUIR</a>
+                            <a href="<?php echo 'details_contact_html.php?id_contact=' . $item['id']; ?>" class="btn btn-secondary btn-sm">CONSULTAR</a>
+                            <a href="<?php echo 'delete_contact.php?id_contact=' . $item['id']; ?>" class="btn btn-secondary btn-sm">EXCLUIR</a>
                         </td>
                     </tr>
                 <?php endforeach; ?>
