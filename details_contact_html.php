@@ -40,7 +40,7 @@
         <br>
         <form action="" method="post" id="cadastro_contato">
             <div class="form-group">
-                <input type="hidden" name="id" value="<?php if (!empty($list['id'])) {
+                <input type="text" name="id" value="<?php if (!empty($list['id'])) {
                                                             echo $list['id'];
                                                         }
                                                         ?>">
@@ -72,7 +72,7 @@
                     </div>
                     <div class="col mb-3">
                         <img src="assets/img/telefone.png" alt="telefones" width="30" height="30" data-bs-toggle="modal" data-bs-target="#phone" />
-                        <img src="assets/img/receptor-de-telefone.png" alt="telefones" width="30" height="30" data-bs-toggle="modal" data-bs-target="#add_phone" />
+                        <a href="<?php echo 'details_contact_save_phone_html.php?id_contact=' . $list['id']; ?>"><img src="assets/img/receptor-de-telefone.png" alt="telefones" width="30" height="30"/></a>
                     </div>
                 </div>
             </div>
@@ -99,16 +99,18 @@
                         <thead>
                             <th>Telefone</th>
                             <th></th>
+                            <th></th>
                         </thead>
                         <tbody>
                             <?php
-                            if (!empty($id)) {
-                                $list_phone = $registerPhone->readRegister($id);
+                            if (!empty($id_contact)) {
+                                $list_phone = $registerPhone->readRegister($id_contact);
                                 foreach ($list_phone as $item) :
                             ?>
                                     <tr>
                                         <td><?php echo $item['number_phone']; ?></td>
                                         <td>Excluir</td>
+                                        <td><a href="<?php echo 'details_contact_save_phone_html.php?id_phone=' . $item['id']; ?>">Editar</a></td>
                                     </tr>
                                 <?php endforeach;
                             } else { ?>
@@ -124,34 +126,6 @@
         </div>
     </div>
 
-    <!-- The Modal add phones -->
-    <div class="modal" id="add_phone">
-        <div class="modal-dialog">
-            <div class="modal-content">
-
-                <!-- Modal Header -->
-                <div class="modal-header">
-                    <h4 class="modal-title">Adicionar Telefone: </h4>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                </div>
-
-                <!-- Modal body -->
-                <div class="modal-body">
-                    <div>
-                        <form action="details_contact_phone.php" method="post"  class="row g-3">
-                            <div class="col-auto">
-                                <label for="add_phone" class="visually-hidden">Telefone</label>
-                                <input type="text" class="form-control" id="add_phone" placeholder="Telefone">
-                            </div>
-                            <div class="col-auto">
-                                <input type="submit" value="Salvar" class="btn btn-success">
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 </body>
 
 </html>

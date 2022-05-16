@@ -1,4 +1,7 @@
 <?php
+
+use JetBrains\PhpStorm\Internal\ReturnTypeContract;
+
 class Phone
 {
     private $id;
@@ -57,6 +60,19 @@ class Phone
         }
     }
 
+    public function checkPhone()
+    {
+        $sql = "SELECT * FROM phone WHERE number_phone = :number_phone";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindParam(":number_phone", $this->number_phone, PDO::PARAM_INT);
+        $stmt->execute();
+        if ($stmt->rowCount() > 0) {
+            return True;
+        } else {
+            return False;
+        }
+    }
+
     public function save()
     {
         if (!empty($this->id)) {
@@ -67,11 +83,13 @@ class Phone
             $stmt->bindParam(":id", $this->id, PDO::PARAM_INT);
             $stmt->execute();
         } else {
-            $sql = "INSERT INTO contato (number_phone, id_contact) VALUES (:number_phone, :id_contact)";
-            $stmt = $this->pdo->prepare($sql);
-            $stmt->bindParam(":number_phone", $this->number_phone, PDO::PARAM_STR);
-            $stmt->bindParam(":id_contact", $this->id_contact, PDO::PARAM_INT);
-            $stmt->execute();
+            if ($this->checkPhone() == True) {
+                $sql = "INSERT INTO contato (number_phone, id_contact) VALUES (:number_phone, :id_contact)";
+                $stmt = $this->pdo->prepare($sql);
+                $stmt->bindParam(":number_phone", $this->number_phone, PDO::PARAM_STR);
+                $stmt->bindParam(":id_contact", $this->id_contact, PDO::PARAM_INT);
+                $stmt->execute();
+            }
         }
     }
 }
