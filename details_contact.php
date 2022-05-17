@@ -12,7 +12,7 @@ if (!empty($_GET["id_contact"])) {
 }
 
 if (!empty($_POST["name"]) || !empty($_POST["secondname"]) || !empty($_POST["telefone"])) {
-    $id_contact = addslashes($_POST["id_contact"]);
+    $id_contact = addslashes($_GET["id_contact"]);
     $name = addslashes($_POST["name"]);
     $secondname = addslashes($_POST["secondname"]);
     $cpf = addslashes($_POST["cpf"]);
