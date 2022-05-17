@@ -31,6 +31,8 @@ INSERT INTO contato (name, secondname, cpf, email)
 VALUES ("augusto", "angelo", "06630408547", "augusto.angelo@gmail.com"); 
 
 
+describe phone;
+
 SELECT a.name, b.number_phone FROM contato as a INNER JOIN phone as b on a.id = b.id_contact WHERE a.id = 1;
 
 SELECT c.name, p.number_phone FROM contato as c INNER JOIN phone as p on c.id = p.id_contact WHERE p.id = :id_contact;

@@ -96,13 +96,16 @@ class Phone
             $stmt->bindParam(":id_contact", $this->id_contact, PDO::PARAM_INT);
             $stmt->bindParam(":id", $this->id, PDO::PARAM_INT);
             $stmt->execute();
+            return True;
         } elseif ($this->checkPhone() == True) {
             $sql = "INSERT INTO phone (number_phone, id_contact) VALUES (:number_phone, :id_contact)";
             $stmt = $this->pdo->prepare($sql);
             $stmt->bindParam(":number_phone", $this->number_phone, PDO::PARAM_STR);
             $stmt->bindParam(":id_contact", $this->id_contact, PDO::PARAM_INT);
             $stmt->execute();
+            return True;
         }
+        return False;
     }
 
     public function deletePhone(){
