@@ -72,7 +72,21 @@ class Phone
             return array();
         }
     }
-    /*
+
+    public function checkPhone()
+    {
+        $sql = "SELECT * FROM phone WHERE number_phone = :number_phone";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindParam(":number_phone", $this->number_phone, PDO::PARAM_STR);
+        $stmt->execute();
+        if ($stmt->rowCount() == 0) {
+            return True;
+        } else {
+            return False;
+        }
+    }
+
+
     public function save()
     {
         if (!empty($this->id)) {
@@ -82,15 +96,20 @@ class Phone
             $stmt->bindParam(":id_contact", $this->id_contact, PDO::PARAM_INT);
             $stmt->bindParam(":id", $this->id, PDO::PARAM_INT);
             $stmt->execute();
-        } else {
-            if ($this->() == True) {
-                $sql = "INSERT INTO contato (number_phone, id_contact) VALUES (:number_phone, :id_contact)";
-                $stmt = $this->pdo->prepare($sql);
-                $stmt->bindParam(":number_phone", $this->number_phone, PDO::PARAM_STR);
-                $stmt->bindParam(":id_contact", $this->id_contact, PDO::PARAM_INT);
-                $stmt->execute();
-            }
+        } elseif ($this->checkPhone() == True) {
+            $sql = "INSERT INTO phone (number_phone, id_contact) VALUES (:number_phone, :id_contact)";
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->bindParam(":number_phone", $this->number_phone, PDO::PARAM_STR);
+            $stmt->bindParam(":id_contact", $this->id_contact, PDO::PARAM_INT);
+            $stmt->execute();
         }
     }
-    */
+
+    public function deletePhone(){
+        $sql = "DELETE FROM phone WHERE id = :id";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindParam(":id", $this->id, PDO::PARAM_INT);
+        $stmt->execute();
+        return True;
+    }
 }

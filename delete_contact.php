@@ -11,5 +11,3 @@ if (!empty($_GET['id_contact'])) {
     $registerContact->deleteContact();
     header('location: index.php');
 }
-
-

@@ -40,7 +40,7 @@
         <br>
         <form action="" method="post" id="cadastro_contato">
             <div class="form-group">
-                <input type="text" name="id" value="<?php if (!empty($list['id'])) {
+                <input type="hidden" name="id" value="<?php if (!empty($list['id'])) {
                                                             echo $list['id'];
                                                         }
                                                         ?>">
@@ -109,8 +109,8 @@
                             ?>
                                     <tr>
                                         <td><?php echo $item['number_phone']; ?></td>
-                                        <td>Excluir</td>
-                                        <td><a href="<?php echo 'details_contact_save_phone_html.php?id_phone=' . $item['id']; ?>">Editar</a></td>
+                                        <td><a href="<?php echo 'delete_phone.php?id_phone=' . $item['id']; ?>" class="btn btn-danger btn-sm">Excluir</a></td>
+                                        <td><a class="btn btn-secondary btn-sm" href="<?php echo 'details_contact_save_phone_html.php?id_phone=' . $item['id']; ?>">Editar</a></td>
                                     </tr>
                                 <?php endforeach;
                             } else { ?>
