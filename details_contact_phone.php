@@ -27,10 +27,7 @@ if (isset($_GET["id_phone"]) || isset($_GET["id_contact"])) {
         $registerPhone->setId_contact($id_contact);
         $registerPhone->save();
 
-        if (isset($_GET["id_phone"])) {
-            header('location: details_contact_html.php?id_contact=' . $list_phone['id_contact']);
-        } elseif (isset($_GET['id_contact'])) {
-            header('location: details_contact_html.php?id_contact=' . $list['id_contact']);
-        }
+
+        header('location: details_contact_html.php?id_contact=' . $_POST['id_contact']);
     }
 }
