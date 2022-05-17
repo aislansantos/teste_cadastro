@@ -60,19 +60,19 @@ class Phone
         }
     }
 
-    public function checkPhone()
+    public function queryRecordToEdit($id_cad = null)
     {
-        $sql = "SELECT * FROM phone WHERE number_phone = :number_phone";
+        $sql = "SELECT c.name, p.number_phone, p.id, p.id_contact FROM contato as c INNER JOIN phone as p on c.id = p.id_contact WHERE p.id = :id_cad";
         $stmt = $this->pdo->prepare($sql);
-        $stmt->bindParam(":number_phone", $this->number_phone, PDO::PARAM_INT);
+        $stmt->bindParam(":id_cad", $id_cad, PDO::PARAM_INT);
         $stmt->execute();
         if ($stmt->rowCount() > 0) {
-            return True;
+            return $stmt->fetch();
         } else {
-            return False;
+            return array();
         }
     }
-
+    /*
     public function save()
     {
         if (!empty($this->id)) {
@@ -83,7 +83,7 @@ class Phone
             $stmt->bindParam(":id", $this->id, PDO::PARAM_INT);
             $stmt->execute();
         } else {
-            if ($this->checkPhone() == True) {
+            if ($this->() == True) {
                 $sql = "INSERT INTO contato (number_phone, id_contact) VALUES (:number_phone, :id_contact)";
                 $stmt = $this->pdo->prepare($sql);
                 $stmt->bindParam(":number_phone", $this->number_phone, PDO::PARAM_STR);
@@ -92,4 +92,5 @@ class Phone
             }
         }
     }
+    */
 }

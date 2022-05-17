@@ -37,25 +37,25 @@
         <br>
         <form action="" method="post" id="cadastro_phone">
             <div class="form-group">
-                <input type="text" name="id_phone" value="<?php if (!empty($list['id'])) {
-                                                                echo $list['id'];
-                                                            }
-                                                            ?>" disabled placeholder="id contato" />
-
-                <input type="text" name="id_contact" value="<?php if (!empty($list_phone['id'])) {
+                <input type="text" name="id" value="<?php if (!empty($list_phone['id'])) {
                                                                 echo $list_phone['id'];
-                                                            } ?>" disabled placeholder="id telefone">
+                                                            }
+                                                            ?>" />
+
+                <input type="text" name="id_contact" value="<?php if (!empty($list_phone['id_contact'])) {
+                                                                echo $list_phone['id_contact'];
+                                                            } ?>" />
 
                 <div class="col mb-3">
                     <input type="text" name="number_phone" id="number_phone" value="<?php if (!empty($list_phone['number_phone'])) {
-                                                                                        echo $list['number_phone'];
+                                                                                        echo $list_phone['number_phone'];
                                                                                     }
                                                                                     ?>" required placeholder="Telefone">
                 </div>
                 <div class="row">
                     <div class="col mb-3">
-                        <input type="text" name="contato" id="secondname" value="<?php if (!empty($list['name'])) {
-                                                                                        echo $list['name'];
+                        <input type="text" name="contato" id="secondname" value="<?php if (!empty($list_phone['name'])) {
+                                                                                        echo $list_phone['name'];
                                                                                     }
                                                                                     ?>" placeholder="nome" readonly disabled />
 
