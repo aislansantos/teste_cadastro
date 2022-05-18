@@ -147,14 +147,14 @@
                         return true;
                 }
 
-                public function checkCPF($cpf)
+                public function checkCPF()
                 {
                         $sql = "SELECT * FROM contato WHERE cpf = :cpf";
                         $stmt = $this->pdo->prepare($sql);
-                        $stmt->bindParam(":cpf", $cpf, PDO::PARAM_STR);
+                        $stmt->bindParam(":cpf", $this->cpf, PDO::PARAM_STR);
                         $stmt->execute();
                         if ($stmt->rowCount() == 0) {
-                                return True;
+                                echo "teste";
                         }
                 }
 

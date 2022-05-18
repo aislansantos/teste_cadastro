@@ -24,14 +24,13 @@ if (!empty($_POST["name"]) || !empty($_POST["secondname"]) || !empty($_POST["tel
     $registerContact->setCpf($cpf);
     $registerContact->setEmail($email);
 
-    if ($registerContact->checkCPF($cpf) == True){
-        $registerContact->save();
-    }else{
-        echo "<div class='alert alert-danger' role='alert'> CPF JÁ EXISTE! </div>";
-    }
+
+    $registerContact->save();
+
 
     if ($registerContact->save() == False) {
         echo "<div class='alert alert-danger' role='alert'> CPF INVÁLIDO! </div>";
+        
     } else {
         header('location: index.php');
     }
