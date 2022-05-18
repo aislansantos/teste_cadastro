@@ -37,19 +37,21 @@
                                                                 } else {
                                                                     echo $_GET['id_contact'];
                                                                 } ?>" />
-                <div class="col mb-3">
+                <div class="col mb-1">
+                    <label for="">Telefone:</label>
                     <input type="text" name="number_phone" id="number_phone" value="<?php if (!empty($list_phone['number_phone'])) {
                                                                                         echo $list_phone['number_phone'];
                                                                                     }
                                                                                     ?>" required placeholder="Telefone">
                 </div>
                 <div class="row">
-                    <div class="col mb-3">
-                        <input type="text" name="name" id="name" value="<?php if (!empty($list_phone['name'])) {
+                    <div class="col mb-4">
+                        <label for="">Nome do contato: <?php if (!empty($list_phone['name'])) {
                                                                             echo $list_phone['name'];
                                                                         } elseif($_GET['id_contact']) {
                                                                            echo $list['name'];
-                                                                        } ?>" placeholder="nome" disabled />
+                                                                        } ?></label>
+
                     </div>
                 </div>
                 <input type="submit" value="Salvar" class="btn btn-success">
