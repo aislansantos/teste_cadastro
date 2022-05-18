@@ -84,18 +84,18 @@
                         }
                 }
 
-                        public function queryRecordToEdit($id_cad = null)
-                        {
-                                $sql = "SELECT * FROM contato WHERE id = :id_cad";
-                                $stmt = $this->pdo->prepare($sql);
-                                $stmt->bindParam(":id_cad", $id_cad, PDO::PARAM_INT);
-                                $stmt->execute();
-                                if ($stmt->rowCount() > 0) {
-                                        return $stmt->fetch();
-                                } else {
-                                        return array();
-                                }
+                public function queryRecordToEdit($id_cad = null)
+                {
+                        $sql = "SELECT * FROM contato WHERE id = :id_cad";
+                        $stmt = $this->pdo->prepare($sql);
+                        $stmt->bindParam(":id_cad", $id_cad, PDO::PARAM_INT);
+                        $stmt->execute();
+                        if ($stmt->rowCount() > 0) {
+                                return $stmt->fetch();
+                        } else {
+                                return array();
                         }
+                }
 
                 public function save()
                 {
@@ -145,6 +145,17 @@
                         $stmt->bindParam(":id", $this->id, PDO::PARAM_INT);
                         $stmt->execute();
                         return true;
+                }
+
+                public function checkCPF($cpf)
+                {
+                        $sql = "SELECT * FROM contato WHERE cpf = :cpf";
+                        $stmt = $this->pdo->prepare($sql);
+                        $stmt->bindParam(":cpf", $cpf, PDO::PARAM_STR);
+                        $stmt->execute();
+                        if ($stmt->rowCount() == 0) {
+                                return True;
+                        }
                 }
 
                 public function validate_CPF($cpf_to_be_valid = null)
