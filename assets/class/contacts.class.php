@@ -138,23 +138,22 @@
                         }
                 }
 
-                public function deleteContact()
-                {
-                        $sql = "DELETE FROM contato WHERE id = :id";
-                        $stmt = $this->pdo->prepare($sql);
-                        $stmt->bindParam(":id", $this->id, PDO::PARAM_INT);
-                        $stmt->execute();
-                        return true;
-                }
+
 
                 public function checkCPF()
                 {
-                        $sql = "SELECT * FROM contato WHERE cpf = :cpf";
-                        $stmt = $this->pdo->prepare($sql);
-                        $stmt->bindParam(":cpf", $this->cpf, PDO::PARAM_STR);
-                        $stmt->execute();
-                        if ($stmt->rowCount() == 0) {
-                                echo "teste";
+                        if ($this->cpf != null) {
+                                $sql = "SELECT * FROM contato WHERE cpf = :cpf";
+                                $stmt = $this->pdo->prepare($sql);
+                                $stmt->bindParam(":cpf", $this->cpf, PDO::PARAM_STR);
+                                $stmt->execute();
+                                if ($stmt->rowCount() == 0) {
+                                        return false;
+                                } else {
+                                        return true;
+                                }
+                        } else {
+                                return false;
                         }
                 }
 
@@ -186,7 +185,17 @@
                                 }
                                 return true;
                         } else {
-                                return True;
+                                return true;
                         }
+                }
+
+
+                public function deleteContact()
+                {
+                        $sql = "DELETE FROM contato WHERE id = :id";
+                        $stmt = $this->pdo->prepare($sql);
+                        $stmt->bindParam(":id", $this->id, PDO::PARAM_INT);
+                        $stmt->execute();
+                        return True;
                 }
         }

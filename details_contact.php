@@ -25,13 +25,14 @@ if (!empty($_POST["name"]) || !empty($_POST["secondname"]) || !empty($_POST["tel
     $registerContact->setEmail($email);
 
 
-    $registerContact->save();
 
-
-    if ($registerContact->save() == False) {
-        echo "<div class='alert alert-danger' role='alert'> CPF INVÁLIDO! </div>";
-        
+    if ($registerContact->checkCPF() == true) {
+        echo "<div class='alert alert-danger' role='alert'> CPF JÁ EXISTE! </div>";
     } else {
-        header('location: index.php');
+        if ($registerContact->save() == false) {
+            echo "<div class='alert alert-danger' role='alert'> CPF INVÁLIDO! </div>";
+        } else {
+            header('location: index.php');
+        }
     }
 }

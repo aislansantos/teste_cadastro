@@ -108,7 +108,8 @@ class Phone
         return False;
     }
 
-    public function deletePhone(){
+    public function deletePhone()
+    {
         $sql = "DELETE FROM phone WHERE id = :id";
         $stmt = $this->pdo->prepare($sql);
         $stmt->bindParam(":id", $this->id, PDO::PARAM_INT);
