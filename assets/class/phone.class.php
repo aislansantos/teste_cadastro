@@ -1,12 +1,11 @@
 <?php
 
-use JetBrains\PhpStorm\Internal\ReturnTypeContract;
 
 class Phone
 {
     private $id;
     private $number_phone;
-    private $id_contact;
+    private $id_contact_phone;
     private $pdo;
 
     public function __construct($pdo)
@@ -36,22 +35,22 @@ class Phone
         $this->number_phone = $number_phone;
     }
 
-    public function getId_contact()
+    public function getId_contact_phone()
     {
-        return $this->id_contact;
+        return $this->id_contact_phone;
     }
 
 
-    public function setId_contact($id_contact)
+    public function setId_contact_phone($id_contact_phone)
     {
-        $this->id_contact = $id_contact;
+        $this->id_contact_phone = $id_contact_phone;
     }
 
-    public function readRegister($id_contact)
+    public function readRegister($id_contact_phone)
     {
-        $sql = "SELECT * FROM phone WHERE id_contact = :id_contact";
+        $sql = "SELECT * FROM phone WHERE id_contact_phone = :id_contact_phone";
         $stmt = $this->pdo->prepare($sql);
-        $stmt->bindParam(":id_contact", $id_contact, PDO::PARAM_INT);
+        $stmt->bindParam(":id_contact_phone", $id_contact_phone, PDO::PARAM_INT);
         $stmt->execute();
         if ($stmt->rowCount() > 0) {
             return $stmt->fetchAll();
@@ -90,18 +89,18 @@ class Phone
     public function save()
     {
         if (!empty($this->id)) {
-            $sql = "UPDATE phone SET number_phone = :number_phone, id_contact = :id_contact WHERE id = :id";
+            $sql = "UPDATE phone SET number_phone = :number_phone, id_contact_phone = :id_contact_phone WHERE id = :id";
             $stmt = $this->pdo->prepare($sql);
             $stmt->bindParam(":number_phone", $this->number_phone, PDO::PARAM_STR);
-            $stmt->bindParam(":id_contact", $this->id_contact, PDO::PARAM_INT);
+            $stmt->bindParam(":id_contact", $this->id_contact_phone, PDO::PARAM_INT);
             $stmt->bindParam(":id", $this->id, PDO::PARAM_INT);
             $stmt->execute();
             return True;
         } elseif ($this->checkPhone() == True) {
-            $sql = "INSERT INTO phone (number_phone, id_contact) VALUES (:number_phone, :id_contact)";
+            $sql = "INSERT INTO phone (number_phone, id_contact_phone) VALUES (:number_phone, :id_contact_phone)";
             $stmt = $this->pdo->prepare($sql);
             $stmt->bindParam(":number_phone", $this->number_phone, PDO::PARAM_STR);
-            $stmt->bindParam(":id_contact", $this->id_contact, PDO::PARAM_INT);
+            $stmt->bindParam(":id_contact_phone", $this->id_contact_phone, PDO::PARAM_INT);
             $stmt->execute();
             return True;
         }

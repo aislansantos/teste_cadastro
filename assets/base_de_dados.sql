@@ -1,7 +1,6 @@
-create database contatos_teste;
 show databases;
 use contatos_teste;
-show tables;
+SELECT * FROM contato WHERE cpf = "066.304.076-01";
 
 drop table contato;
 drop table phone;
@@ -18,10 +17,10 @@ primary key(id)
 create table if not exists phone(
 id int(10) auto_increment not null,
 number_phone varchar(14) not null,
-id_contact int(10) not null,
+id_contact_phone int(10) not null,
 primary key(id),
-constraint fk_contact foreign key (id_contact) references contato (id)
-on delete restrict on update cascade
+constraint fk_contact_phone foreign key (id_contact_phone) references contato (id)
+on delete cascade on update cascade
 )ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=UTF8;
 
 create table if not exists email(
@@ -30,8 +29,24 @@ end_email varchar(150) not null,
 id_contact_email int(10) not null,
 primary key(id),
 constraint fk_contact_email foreign key (id_contact_email) references contato (id)
+on delete cascade on update cascade
+)ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=UTF8;
+
+
+select * from contato;
+select * from phone;
+select * from email;
+
+create table if not exists phone(
+id int(10) auto_increment not null,
+number_phone varchar(14) not null,
+id_contact int(10) not null,
+primary key(id),
+constraint fk_contact foreign key (id_contact) references contato (id)
 on delete restrict on update cascade
 )ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=UTF8;
+
+SELECT c.name, e.end_email, e.id, e.id_contact_email FROM contato as c INNER JOIN email as e on c.id = e.id_contact_email WHERE e.id = 12;
 
 select * from contato;
 select * from phone;

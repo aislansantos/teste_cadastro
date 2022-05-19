@@ -1,5 +1,9 @@
-<?php require("details_contact.php"); ?>
-<?php require("details_contact_phone.php") ?>
+<?php
+require("details_contact.php");
+require("details_contact_phone.php");
+require("details_contact_email.php");
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -65,14 +69,11 @@
                                                                         ?>" placeholder="CPF" onkeypress="$(this).mask('000.000.000-00');">
                     </div>
                     <div class="col mb-3">
-                        <input type="email" name="email" id="email" value="<?php if (!empty($list['email'])) {
-                                                                                echo $list['email'];
-                                                                            }
-                                                                            ?>" placeholder="Email">
-                    </div>
-                    <div class="col mb-3">
+                        <img src="assets/img/icons8-email-aberto-50.png" alt="email" width="30" height="30" data-bs-toggle="modal" data-bs-target="#email" />
+                        <a href="<?php echo 'details_contact_save_email_html.php?id_contact=' . $list['id']; ?>"><img src="assets/img/icons8-adicionar-envelope-aberto-50.png" width="30" height="30"></a>
+
                         <img src="assets/img/telefone.png" alt="telefones" width="30" height="30" data-bs-toggle="modal" data-bs-target="#phone" />
-                        <a href="<?php echo 'details_contact_save_phone_html.php?id_contact=' . $list['id']; ?>"><img src="assets/img/receptor-de-telefone.png" alt="telefones" width="30" height="30"/></a>
+                        <a href="<?php echo 'details_contact_save_phone_html.php?id_contact=' . $list['id']; ?>"><img src="assets/img/receptor-de-telefone.png" alt="telefones" width="30" height="30" /></a>
                     </div>
                 </div>
             </div>
@@ -82,7 +83,7 @@
         </form>
     </div>
 
-    <!-- The Modal conta_phones -->
+    <!-- The Modal phone -->
     <div class="modal" id="phone">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -126,8 +127,8 @@
         </div>
     </div>
 
-        <!-- The Modal conta_phones -->
-        <div class="modal" id="phone">
+    <!-- The Modal email -->
+    <div class="modal" id="email">
         <div class="modal-dialog">
             <div class="modal-content">
 
@@ -141,20 +142,20 @@
                 <div class="modal-body">
                     <table id="phone" name="phone" class="table table-hover">
                         <thead>
-                            <th>Telefone</th>
+                            <th>Email</th>
                             <th></th>
                             <th></th>
                         </thead>
                         <tbody>
                             <?php
                             if (!empty($id_contact)) {
-                                $list_phone = $registerPhone->readRegister($id_contact);
-                                foreach ($list_phone as $item) :
+                                $list_email = $registerEmail->readRegister($id_contact);
+                                foreach ($list_email as $item) :
                             ?>
                                     <tr>
-                                        <td><?php echo $item['number_phone']; ?></td>
-                                        <td><a href="<?php echo 'delete_phone.php?id_phone=' . $item['id']; ?>" class="btn btn-danger btn-sm">Excluir</a></td>
-                                        <td><a class="btn btn-secondary btn-sm" href="<?php echo 'details_contact_save_phone_html.php?id_phone=' . $item['id']; ?>">Editar</a></td>
+                                        <td><?php echo $item['end_email']; ?></td>
+                                        <td><a href="<?php echo 'delete_email.php?id_email=' . $item['id']; ?>" class="btn btn-danger btn-sm">Excluir</a></td>
+                                        <td><a class="btn btn-secondary btn-sm" href="<?php echo 'details_contact_save_email_html.php?id_email=' . $item['id']; ?>">Editar</a></td>
                                     </tr>
                                 <?php endforeach;
                             } else { ?>
@@ -169,7 +170,6 @@
             </div>
         </div>
     </div>
-
 </body>
 
 </html>

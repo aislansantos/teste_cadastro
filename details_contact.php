@@ -19,11 +19,9 @@ if (!empty($_POST["name"]) || !empty($_POST["secondname"])) {
     $name = addslashes($_POST["name"]);
     $secondname = addslashes($_POST["secondname"]);
     $cpf = addslashes($_POST["cpf"]);
-    $email = addslashes($_POST["email"]);
     $registerContact->setName($name);
     $registerContact->setSecondname($secondname);
     $registerContact->setCpf($cpf);
-    $registerContact->setEmail($email);
 
 
 

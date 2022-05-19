@@ -101,7 +101,7 @@
                 {
                         if ($this->validate_CPF($this->cpf) == True) {
                                 if (!empty($this->id)) {
-                                        $sql = "UPDATE contato SET name = :name, secondname = :secondname , cpf = :cpf, email = :email WHERE id = :id";
+                                        $sql = "UPDATE contato SET name = :name, secondname = :secondname , cpf = :cpf  WHERE id = :id";
                                         $stmt = $this->pdo->prepare($sql);
                                         $stmt->bindParam(":name", $this->name, PDO::PARAM_STR);
                                         $stmt->bindParam(":secondname", $this->secondname, PDO::PARAM_STR);
@@ -110,7 +110,7 @@
                                         $stmt->execute();
                                 }
                                 if ($this->checkContact() == True) {
-                                        $sql = "INSERT INTO contato (name, secondname, cpf, email) VALUES (:name, :secondname, :cpf, :email)";
+                                        $sql = "INSERT INTO contato (name, secondname, cpf) VALUES (:name, :secondname, :cpf)";
                                         $stmt = $this->pdo->prepare($sql);
                                         $stmt->bindParam(":name", $this->name, PDO::PARAM_STR);
                                         $stmt->bindParam(":secondname", $this->secondname, PDO::PARAM_STR);
