@@ -106,7 +106,6 @@
                                         $stmt->bindParam(":name", $this->name, PDO::PARAM_STR);
                                         $stmt->bindParam(":secondname", $this->secondname, PDO::PARAM_STR);
                                         $stmt->bindParam(":cpf", $this->cpf, PDO::PARAM_STR);
-                                        $stmt->bindParam(":email", $this->email, PDO::PARAM_STR);
                                         $stmt->bindParam(":id", $this->id, PDO::PARAM_INT);
                                         $stmt->execute();
                                 }
@@ -116,7 +115,6 @@
                                         $stmt->bindParam(":name", $this->name, PDO::PARAM_STR);
                                         $stmt->bindParam(":secondname", $this->secondname, PDO::PARAM_STR);
                                         $stmt->bindParam(":cpf", $this->cpf, PDO::PARAM_STR);
-                                        $stmt->bindParam(":email", $this->email, PDO::PARAM_STR);
                                         $stmt->execute();
                                 }
                                 return True;
@@ -127,9 +125,10 @@
 
                 public function checkContact()
                 {
-                        $sql = "SELECT * FROM contato WHERE name = :name";
+                        $sql = "SELECT * FROM contato WHERE name = :name and secondname = :secondname";
                         $stmt = $this->pdo->prepare($sql);
                         $stmt->bindParam(":name", $this->name, PDO::PARAM_STR);
+                        $stmt->bindParam(":secondname", $this->secondname, PDO::PARAM_STR);
                         $stmt->execute();
                         if ($stmt->rowCount() == 0) {
                                 return true;

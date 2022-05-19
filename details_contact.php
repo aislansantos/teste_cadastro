@@ -11,14 +11,15 @@ if (!empty($_GET["id_contact"])) {
     $list = null;
 }
 
-if (!empty($_POST["name"]) || !empty($_POST["secondname"]) || !empty($_POST["telefone"])) {
-    $id_contact = addslashes($_GET["id_contact"]);
+if (!empty($_POST["name"]) || !empty($_POST["secondname"])) {
+    if (!empty($_GET["id_contact"])) {
+        $id_contact = addslashes($_GET["id_contact"]);
+        $registerContact->setId($id_contact);
+    }
     $name = addslashes($_POST["name"]);
     $secondname = addslashes($_POST["secondname"]);
     $cpf = addslashes($_POST["cpf"]);
     $email = addslashes($_POST["email"]);
-
-    $registerContact->setId($id_contact);
     $registerContact->setName($name);
     $registerContact->setSecondname($secondname);
     $registerContact->setCpf($cpf);

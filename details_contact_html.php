@@ -82,8 +82,52 @@
         </form>
     </div>
 
-    <!-- The Modal cont phones -->
+    <!-- The Modal conta_phones -->
     <div class="modal" id="phone">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Telefones: </h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <table id="phone" name="phone" class="table table-hover">
+                        <thead>
+                            <th>Telefone</th>
+                            <th></th>
+                            <th></th>
+                        </thead>
+                        <tbody>
+                            <?php
+                            if (!empty($id_contact)) {
+                                $list_phone = $registerPhone->readRegister($id_contact);
+                                foreach ($list_phone as $item) :
+                            ?>
+                                    <tr>
+                                        <td><?php echo $item['number_phone']; ?></td>
+                                        <td><a href="<?php echo 'delete_phone.php?id_phone=' . $item['id']; ?>" class="btn btn-danger btn-sm">Excluir</a></td>
+                                        <td><a class="btn btn-secondary btn-sm" href="<?php echo 'details_contact_save_phone_html.php?id_phone=' . $item['id']; ?>">Editar</a></td>
+                                    </tr>
+                                <?php endforeach;
+                            } else { ?>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                            <?php } ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        <!-- The Modal conta_phones -->
+        <div class="modal" id="phone">
         <div class="modal-dialog">
             <div class="modal-content">
 
